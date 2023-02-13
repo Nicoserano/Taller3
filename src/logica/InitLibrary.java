@@ -5,7 +5,7 @@ import java.time.LocalTime;
 
 public class InitLibrary {
 
-    public MusicLibrary loadData() {
+    public static MusicLibrary loadData() {
         MusicLibrary myLibrary = new MusicLibrary();
 
         myLibrary.addSong(new Song("1", "Shape of You", LocalDate.of(2017, 1, 6)
