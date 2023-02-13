@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class MusicLibrary {
-    ArrayList<Song> songs = new ArrayList<>(1);
-    ArrayList<Playlist> playlists = new ArrayList<>(1);
+    private final ArrayList<Song> songs = new ArrayList<>(1);
+    private final ArrayList<Playlist> playlists = new ArrayList<>(1);
 
     public ArrayList<Song> getSongs() {
         return songs;
@@ -30,6 +30,28 @@ public class MusicLibrary {
     }
 
     public ArrayList<Song> sortSongs(SortType sortType, boolean ascending) {
-        return getSongs();
+        switch (sortType) {
+            case DATE -> {
+                getSongs().sort((s1, s2) -> {
+                    if (s1.date == s2.date) return 0;
+                    return (s1.date.isBefore(s2.date) ? -1 : 1);
+                });
+                return getSongs();
+            }
+            case DURATION -> {
+                getSongs().sort((s1, s2) -> {
+                    if (s1.duration == s2.duration) return 0;
+                    if (ascending) {
+                        return (s1.duration.isBefore(s2.duration) ? -1 : 1);
+                    } else {
+                        return (s1.duration.isBefore(s2.duration) ? 1 : -1);
+                    }
+                });
+                return getSongs();
+            }
+            default -> {
+                return getSongs();
+            }
+        }
     }
 }
