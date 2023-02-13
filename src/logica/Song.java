@@ -18,11 +18,12 @@ public class Song {
     public Song(String id , String title, LocalDate date, LocalTime duration , String gender,
                 String coverPath, String description) {
         this.id = id;
+        this.title= title;
         this.date= date;
         this.duration = duration;
-        this.gender = gender;
         this.coverPath = coverPath;
         this.gender = gender;
+        this.description = description;
     }
 
     public String getId() {
