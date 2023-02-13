@@ -15,11 +15,10 @@ public class Song {
     public Song() {
     }
 
-    public Song(String id , String title, LocalDate date, LocalTime duration , String gender,
-                String coverPath, String description) {
+    public Song(String id, String title, LocalDate date, LocalTime duration, String gender, String coverPath, String description) {
         this.id = id;
-        this.title= title;
-        this.date= date;
+        this.title = title;
+        this.date = date;
         this.duration = duration;
         this.coverPath = coverPath;
         this.gender = gender;
@@ -80,5 +79,10 @@ public class Song {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "id: " + id + " | title: " + title + " | date: " + date + " | duration: " + duration + " | gender: " + gender + " | coverPath: " + coverPath + " | description: " + description;
     }
 }
