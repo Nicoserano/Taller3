@@ -51,7 +51,7 @@ public class Playlist {
 
     public static Playlist createPlaylist(ArrayList<Song> userList) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Insert the id of the song: ");
+        System.out.print("Insert the id of the playlist: ");
         String id = scanner.nextLine();
         System.out.print("Insert the name of the playlist: ");
         String name = scanner.nextLine();

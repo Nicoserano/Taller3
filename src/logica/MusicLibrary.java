@@ -19,17 +19,22 @@ public class MusicLibrary {
         songs.add(song);
     }
 
-
-
-    public void removeSong(int i) {
-        if (i < 0 || i >= songs.size()) {
-            throw new IndexOutOfBoundsException("Invalid index: " + i);
+    public void removeSong(int songIndex) {
+        if (songIndex < 0 || songIndex >= songs.size()) {
+            throw new IndexOutOfBoundsException("Invalid index: " + songIndex);
         }
-        songs.remove(i);
+        songs.remove(songIndex);
     }
 
     public void addPlaylist(Playlist playlist) {
         playlists.add(playlist);
+    }
+
+    public void removePlaylist(int playlistIndex) {
+        if (playlistIndex < 0 || playlistIndex >= songs.size()) {
+            throw new IndexOutOfBoundsException("Invalid index: " + playlistIndex);
+        }
+        songs.remove(playlistIndex);
     }
 
     public ArrayList<Song> filterSongs(FilterType filterType, String filter) {
