@@ -45,7 +45,7 @@ public class MusicLibrary {
     // Method to remove a playlist from the music library
     public void removePlaylist(int playlistIndex) {
         // Throw an exception if the index is out of bounds
-        if (playlistIndex < 0 || playlistIndex >= songs.size()) {
+        if (playlistIndex < 0 || playlistIndex > songs.size()) {
             throw new IndexOutOfBoundsException("Invalid index: " + playlistIndex);
         }
         songs.remove(playlistIndex);
