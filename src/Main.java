@@ -90,12 +90,23 @@ public class Main {
     private static int menu(String prompt) {
         Scanner scanner = new Scanner(System.in);
         System.out.println(prompt);
-        return scanner.nextInt();
+        while (!scanner.hasNextInt()) {
+            System.out.println("Invalid input. Please enter an integer.");
+            scanner.next(); // clear invalid input
+        }
+        int input = scanner.nextInt();
+        scanner.nextLine(); // clear buffer
+        return input;
     }
 
     private static String read(String prompt) {
         Scanner scanner = new Scanner(System.in);
         System.out.print(prompt);
-        return scanner.nextLine();
-    }
-}
+        String input = scanner.nextLine().trim();
+        while (input.isEmpty()) {
+            System.out.println("Invalid input. Please enter a non-empty string.");
+            System.out.print(prompt);
+            input = scanner.nextLine().trim();
+        }
+        return input;
+    }}
