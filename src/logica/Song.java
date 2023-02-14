@@ -4,7 +4,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 /**
  * This is the Song class that defines a Song object
- */
+ *
+ * @author Ronald serrano
+ * @author David Bonelo
+ * */
 public class Song {
     private String id;//The id of the song
     private String title;//The title of the song
