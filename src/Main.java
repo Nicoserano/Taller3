@@ -30,15 +30,17 @@ public class Main {
         }
         System.out.println();
 
-        boolean exit = false;
-        while (!exit) {
-            int menuChoice = menu("Menu: 1. Add Song | 2. Remove Song | 3. Filter by gender | 4. Filter by year | 5. Sort by duration | 6. Sort by date | 7. Create playlist from this list | 0. Main menu");
+
+        int menuChoice=0;
+        while (menuChoice != 9) {
+            menuChoice = menu("Menu: 1. Add Song | 2. Remove Song | 3. Filter by gender | 4. Filter by year " +
+                    "| 5. Sort by duration | 6. Sort by date | 7. Create playlist from this list | 9. Main menu");
             switch (menuChoice) {
                 case 1 -> musicLibrary.addSong(Song.createSong()); // TODO: handle creation exception
                 case 2 -> {
                     int i = Integer.parseInt(read("Insert the number of the song you want to remove: "));
                     try {
-                        musicLibrary.removeSong(i-1);
+                        musicLibrary.removeSong(i - 1);
                     } catch (IndexOutOfBoundsException e) {
                         System.out.println(e.getMessage());
                     }
@@ -55,7 +57,8 @@ public class Main {
                 case 5 -> showSongs(musicLibrary.sortSongs(SortType.DURATION, true));
                 case 6 -> showSongs(musicLibrary.sortSongs(SortType.DATE, true));
                 case 7 -> musicLibrary.addPlaylist(Playlist.createPlaylist(songs));
-                case 0 -> exit = true;
+                case 9-> System.out.println("");
+
                 default -> System.out.println("Unknown menu option");
             }
         }
