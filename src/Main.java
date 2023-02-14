@@ -2,14 +2,21 @@ import logica.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+ * Class where the main execution begins and contains the logic to show the menus to the user.
+ *
+ * @author Ronald serrano
+ * @author David Bonelo
+ * */
 public class Main {
+    // static variable to hold the library data, calls the load of initial data
     private static final MusicLibrary musicLibrary = InitLibrary.loadData();
 
     public static void main(String[] args) {
 
         System.out.println("Music Library!");
 
+        // Infinite loop for the main menu that asks the user to input their option choice
         boolean exit = false;
         while (!exit) {
             int menuChoice = menu("Menu: 1. Show Songs Library | 2. Show Playlists | 0. Exit");
@@ -22,6 +29,11 @@ public class Main {
         }
     }
 
+
+    /**
+     * Prints the list of songs and its attributes, then, shows options to use with the list.
+     * @param songs list of songs to show
+     */
     private static void showSongs(ArrayList<Song> songs) {
         System.out.println("List of songs:");
         for (int i = 0; i < songs.size(); i++) {
@@ -35,7 +47,8 @@ public class Main {
         switch (menuChoice) {
             case 1 -> musicLibrary.addSong(Song.createSong());
             case 2 -> {
-                int indexToRemove = Integer.parseInt(read("Insert the number of the song you want to remove: ")) - 1;
+                int indexToRemove = Integer.parseInt(read("Insert the number of the song you want to remove: ")) - 1; // -1 because user indexes start from 1
+                // IndexOutOfBounds handling
                 try {
                     musicLibrary.removeSong(indexToRemove);
                 } catch (IndexOutOfBoundsException e) {
@@ -60,6 +73,10 @@ public class Main {
         }
     }
 
+    /**
+     * Prints the list of playlists and its attributes, then, shows options to use with the list.
+     * @param playlists list of playlists to show
+     */
     private static void showPlaylists(ArrayList<Playlist> playlists) {
         System.out.println("Playlists Library:");
         for (int i = 0; i < playlists.size(); i++) {
@@ -72,6 +89,7 @@ public class Main {
         switch (menuChoice) {
             case 1 -> {
                 int playlistIndex = Integer.parseInt(read("Insert the number of the playlist to select: ")) - 1;
+                // IndexOutOfBounds handling
                 int playlistSize = musicLibrary.getPlaylists().size();
                 if ((playlistIndex > playlistSize || playlistIndex < 0)) {
                     System.out.println("Incorrect index " + (playlistIndex + 1));
@@ -81,6 +99,7 @@ public class Main {
             }
             case 2 -> {
                 int playlistIndex = Integer.parseInt(read("Insert the number of the playlist to remove: ")) - 1;
+                // IndexOutOfBounds handling
                 try {
                     musicLibrary.removePlaylist(playlistIndex);
                 } catch (IndexOutOfBoundsException e) {
@@ -92,9 +111,15 @@ public class Main {
         }
     }
 
+    /**
+     * Simple method to show a prompt and read an integer from std
+     * @param prompt a string to show in stdout
+     * @return an Integer read from stdin.
+     */
     private static int menu(String prompt) {
         Scanner scanner = new Scanner(System.in);
         System.out.println(prompt);
+        // Invalid integer handling
         while (!scanner.hasNextInt()) {
             System.out.println("Invalid input. Please enter an integer.");
             scanner.next(); // clear invalid input
@@ -104,10 +129,16 @@ public class Main {
         return input;
     }
 
+    /**
+     * Simple method to show a prompt and read a string from std
+     * @param prompt a string to show in stdout
+     * @return a String read from stdin
+     */
     private static String read(String prompt) {
         Scanner scanner = new Scanner(System.in);
         System.out.print(prompt);
         String input = scanner.nextLine().trim();
+        // Invalid input handling
         while (input.isEmpty()) {
             System.out.println("Invalid input. Please enter a non-empty string.");
             System.out.print(prompt);
