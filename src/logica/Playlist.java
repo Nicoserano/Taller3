@@ -45,7 +45,7 @@ public class Playlist {
 
     @Override
     public String toString() {
-        // Devuelve una cadena de texto que representa el objeto Playlist
+        // Returns a string that represents the Playlist object with its id and name.
         return "id: " + id + " | name: " + name;
     }
 
@@ -56,6 +56,7 @@ public class Playlist {
         System.out.print("Insert the name of the playlist: ");
         String name = scanner.nextLine();
 
+        // Creates a new Playlist object with the given id, name, and list of songs.
         return new Playlist(id, name, userList);
     }
 }
