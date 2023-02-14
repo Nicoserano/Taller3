@@ -14,16 +14,26 @@ public class MusicLibrary {
     public ArrayList<Playlist> getPlaylists() {
         return playlists;
     }
-    public void addSong(Song song){
+
+    public void addSong(Song song) {
         songs.add(song);
     }
+
+    public void removeSong(Song song) {
+        songs.remove(song);
+    }
+
+    public void removeSong(int i) {
+        songs.remove(i);
+    }
+
     public ArrayList<Song> filterSongs(FilterType filterType, String filter) {
         switch (filterType) {
             case GENDER -> {
                 return new ArrayList<>(getSongs().stream().filter(s -> s.getGender().equals(filter)).collect(Collectors.toList()));
             }
             case YEAR -> {
-                return new ArrayList<>(getSongs().stream().filter(s -> s.date.getYear() == Integer.parseInt(filter)).collect(Collectors.toList()));
+                return new ArrayList<>(getSongs().stream().filter(s -> s.releaseDate.getYear() == Integer.parseInt(filter)).collect(Collectors.toList()));
             }
             default -> {
                 return getSongs();
@@ -35,8 +45,8 @@ public class MusicLibrary {
         switch (sortType) {
             case DATE -> {
                 getSongs().sort((s1, s2) -> {
-                    if (s1.date == s2.date) return 0;
-                    return (s1.date.isBefore(s2.date) ? -1 : 1);
+                    if (s1.releaseDate == s2.releaseDate) return 0;
+                    return (s1.releaseDate.isBefore(s2.releaseDate) ? -1 : 1);
                 });
                 return getSongs();
             }
