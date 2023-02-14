@@ -9,9 +9,10 @@ import java.util.ArrayList;
  * @author David Bonelo
  * */
 public class Playlist {
-    // Private variables for the id and the list of songs
+    // Private variables for the id, name  and the list of songs
     private String id;
     private ArrayList<Song> songs;
+    private String name;
 
     // Constructor that initializes the list of songs
     public Playlist(String id) {
@@ -38,5 +39,10 @@ public class Playlist {
     // Method to get the id of the playlist
     public String getId() {
         return id;
+    }
+    @Override
+    public String toString() {
+        // Devuelve una cadena de texto que representa el objeto Playlist
+        return "id: " + id + " | name: " + name;
     }
 }
