@@ -31,7 +31,7 @@ public class Main {
         System.out.println();
 
 
-        int menuChoice = menu("Menu: 1. Add Song | 2. Remove Song | 3. Filter by gender | 4. Filter by year " + "| 5. Sort by duration | 6. Sort by date | 7. Create playlist from this list | 9. Main menu");
+        int menuChoice = menu("Menu: 1. Add Song | 2. Remove Song | 3. Filter by gender | 4. Filter by year " + "| 5. Sort by duration | 6. Sort by date | 7. Create playlist from this list | 0. Main menu");
         switch (menuChoice) {
             case 1 -> musicLibrary.addSong(Song.createSong());
             case 2 -> {
@@ -72,7 +72,9 @@ public class Main {
         switch (menuChoice) {
             case 1 -> {
                 int playlistIndex = Integer.parseInt(read("Insert the number of the playlist to select: ")) - 1;
-                showSongs(musicLibrary.getPlaylists().get(playlistIndex).getSongs());
+                int playlistSize = musicLibrary.getPlaylists().size();
+                if (playlistIndex > playlistSize || playlistIndex < 0)
+                    showSongs(musicLibrary.getPlaylists().get(playlistIndex).getSongs());
             }
             case 2 -> {
                 int playlistIndex = Integer.parseInt(read("Insert the number of the playlist to remove: ")) - 1;
