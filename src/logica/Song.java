@@ -2,6 +2,7 @@ package logica;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 /**
@@ -188,16 +189,39 @@ public class Song {
     }
 
     public static Song createSong() {
-        String id = read("Insert the id of the song: ");
+        String id = "";
+        id = read("Insert the id of the song: ");
+
         String title = read("Insert the title of the song: ");
-        LocalDate releaseDate = LocalDate.parse(read("Insert the release date of the song (YYYY-MM-DD): "));
-        LocalTime duration = LocalTime.parse(read("Insert the duration of the song (H:mm:ss): "));
+
+        LocalDate releaseDate = null;
+        while (releaseDate == null) {
+            String releaseDateStr = read("Insert the release date of the song (YYYY-MM-DD): ");
+            try {
+                releaseDate = LocalDate.parse(releaseDateStr);
+            } catch (DateTimeParseException e) {
+                System.out.println("Invalid release date format. Please enter a date in the format YYYY-MM-DD.");
+            }
+        }
+
+        LocalTime duration = null;
+        while (duration == null) {
+            String durationStr = read("Insert the duration of the song (H:mm:ss): ");
+            try {
+                duration = LocalTime.parse(durationStr);
+            } catch (DateTimeParseException e) {
+                System.out.println("Invalid duration format. Please enter a time in the format H:mm:ss.");
+            }
+        }
+
         String gender = read("Insert the gender type of the song: ");
         String coverPath = read("Insert the coverPath type of the song: ");
         String description = read("Insert the description type of the song: ");
 
         return new Song(id, title, releaseDate, duration, gender, coverPath, description);
     }
+
+
     private static String read(String prompt) {
         Scanner scanner = new Scanner(System.in);
         System.out.print(prompt);
