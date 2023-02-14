@@ -37,7 +37,11 @@ public class Main {
                 case 1 -> musicLibrary.addSong(Song.createSong()); // TODO: handle creation exception
                 case 2 -> {
                     int i = Integer.parseInt(read("Insert the number of the song you want to remove: "));
-                    musicLibrary.removeSong(i - 1);
+                    try {
+                        musicLibrary.removeSong(i-1);
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println(e.getMessage());
+                    }
                     showSongs(musicLibrary.getSongs());
                 }
                 case 3 -> {

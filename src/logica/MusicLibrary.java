@@ -19,11 +19,12 @@ public class MusicLibrary {
         songs.add(song);
     }
 
-    public void removeSong(Song song) {
-        songs.remove(song);
-    }
+
 
     public void removeSong(int i) {
+        if (i < 0 || i >= songs.size()) {
+            throw new IndexOutOfBoundsException("Invalid index: " + i);
+        }
         songs.remove(i);
     }
 
