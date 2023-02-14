@@ -188,6 +188,10 @@ public class Song {
         return "id: " + id + " | title: " + title + " | date: " + releaseDate + " | duration: " + duration + " | gender: " + gender + " | coverPath: " + coverPath + " | description: " + description;
     }
 
+    /**
+     * Create a new Song object by prompting the user to enter its attributes.
+     * @return a new Song object created from user input.
+     */
     public static Song createSong() {
         String id = "";
         id = read("Insert the id of the song: ");
@@ -221,7 +225,12 @@ public class Song {
         return new Song(id, title, releaseDate, duration, gender, coverPath, description);
     }
 
-
+    /**
+     * Reads a user input from the command line.
+     *
+     * @param prompt the prompt to display to the user
+     * @return the string entered by the user
+     */
     private static String read(String prompt) {
         Scanner scanner = new Scanner(System.in);
         System.out.print(prompt);
