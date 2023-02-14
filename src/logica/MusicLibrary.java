@@ -27,6 +27,10 @@ public class MusicLibrary {
         songs.remove(i);
     }
 
+    public void addPlaylist(Playlist playlist) {
+        playlists.add(playlist);
+    }
+
     public ArrayList<Song> filterSongs(FilterType filterType, String filter) {
         switch (filterType) {
             case GENDER -> {

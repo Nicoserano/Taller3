@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class Main {
     private static final MusicLibrary musicLibrary = InitLibrary.loadData();
-    private static ArrayList<Song> userList = musicLibrary.getSongs();
 
     public static void main(String[] args) {
 
@@ -24,7 +23,6 @@ public class Main {
     }
 
     private static void showSongs(ArrayList<Song> songs) {
-        userList = songs;
         System.out.println("Music Library:");
         for (int i = 0; i < songs.size(); i++) {
             Song s = songs.get(i);
@@ -52,7 +50,7 @@ public class Main {
                 }
                 case 5 -> showSongs(musicLibrary.sortSongs(SortType.DURATION, true));
                 case 6 -> showSongs(musicLibrary.sortSongs(SortType.DATE, true));
-//                case 7 -> MusicLibrary.addPlaylist(userList);
+                case 7 -> musicLibrary.addPlaylist(Playlist.createPlaylist(songs));
                 case 0 -> exit = true;
                 default -> System.out.println("Unknown menu option");
             }
