@@ -73,8 +73,11 @@ public class Main {
             case 1 -> {
                 int playlistIndex = Integer.parseInt(read("Insert the number of the playlist to select: ")) - 1;
                 int playlistSize = musicLibrary.getPlaylists().size();
-                if (playlistIndex > playlistSize || playlistIndex < 0)
+                if ((playlistIndex > playlistSize || playlistIndex < 0)) {
+                    System.out.println("Incorrect index " + (playlistIndex + 1));
+                } else {
                     showSongs(musicLibrary.getPlaylists().get(playlistIndex).getSongs());
+                }
             }
             case 2 -> {
                 int playlistIndex = Integer.parseInt(read("Insert the number of the playlist to remove: ")) - 1;
